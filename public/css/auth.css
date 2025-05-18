@@ -3,10 +3,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Full page layout */
+/* Full page layout for auth pages */
 body {
     background-color: #f0f2f5;
     height: 100vh;
@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-/* Form container */
+/* Form container for login/registration */
 form {
     background-color: white;
     padding: 2rem;
@@ -72,141 +72,249 @@ a {
     text-decoration: none;
 }
 
-/* Dashboard */
-/* Reset default */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* Dashboard Layout */
 body {
+    background-color: #f4f6f8;
+    color: #333;
     height: 100vh;
-    background-color: #f0f2f5;
+    overflow: hidden;
 }
 
-/* Dashboard layout */
-.dashboard-wrapper {
+.dashboard-layout {
     display: flex;
     height: 100vh;
     width: 100vw;
 }
 
-/* Sidebar */
 .sidebar {
-    width: 240px;
     background-color: #007bff;
     color: white;
+    width: 260px;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
+    align-items: center;
 }
 
-.sidebar h2 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar li {
+.sidebar .profile img {
+    border-radius: 50%;
     margin-bottom: 1rem;
 }
 
-.sidebar button {
+.sidebar .profile h3 {
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.sidebar .profile p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    margin-top: 2rem;
     width: 100%;
-    padding: 10px 15px;
-    border: none;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar nav button {
     background-color: #0056b3;
     color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
     border-radius: 4px;
-    cursor: pointer;
     text-align: left;
-    transition: background-color 0.2s;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.sidebar button:hover {
-    background-color: #003e80;
+.sidebar nav button:hover {
+    background-color: #003f87;
 }
 
-/* Main content area */
-.main-content {
-    flex-grow: 1;
+.main-panel {
+    flex: 1;
     padding: 2rem;
-    background-color: #ffffff;
     overflow-y: auto;
+    background-color: #ffffff;
 }
 
-#dashboardContent h2 {
+.dashboard-header h1 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
     color: #333;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background-color: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.stat-card h3 {
+    margin-bottom: 0.5rem;
+    color: #007bff;
+}
+
+.stat-card p {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.stat-card span {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f4f6f8;
+    border-radius: 8px;
+}
+
+.empty-state img {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state h2 {
+    font-size: 1.3rem;
     margin-bottom: 1rem;
 }
 
-#dashboardContent p {
-    font-size: 1rem;
-    color: #444;
-    margin-bottom: 0.5rem;
+.empty-state button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
 }
-/* Mobile-first defaults are already covered above */
 
-/* Tablet screens */
+.empty-state button:hover {
+    background-color: #0056b3;
+}
+
+/* Add Listing Form Styling */
+form#listingForm {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+form#listingForm label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: #333;
+    display: block;
+}
+
+form#listingForm input[type="text"],
+form#listingForm input[type="number"],
+form#listingForm input[type="file"],
+form#listingForm select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+form#listingForm input[type="file"] {
+    padding: 8px;
+}
+
+form#listingForm button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form#listingForm button:hover {
+    background-color: #0056b3;
+}
+
+#creditMessage {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: -0.5rem;
+    color: red;
+    font-weight: bold;
+}
+
+/* Optional: Grouping for side-by-side selects */
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .dashboard-wrapper {
+    .dashboard-layout {
         flex-direction: column;
     }
 
     .sidebar {
-        width: 100%;
         flex-direction: row;
         justify-content: space-around;
+        width: 100%;
         padding: 1rem;
     }
 
-    .sidebar h2 {
-        display: none; /* hide big logo text on small screens */
-    }
-
-    .sidebar ul {
+    .sidebar nav ul {
         display: flex;
-        flex-direction: row;
         gap: 10px;
     }
 
-    .sidebar li {
-        margin-bottom: 0;
-    }
-
-    .sidebar button {
-        font-size: 0.9rem;
-        padding: 8px;
-        white-space: nowrap;
-    }
-
-    .main-content {
+    .main-panel {
         padding: 1rem;
     }
-}
 
-/* Very small screens (phones) */
-@media (max-width: 480px) {
-    .sidebar button {
-        font-size: 0.8rem;
-        padding: 6px;
+    form#listingForm {
+        padding: 1.5rem;
+        margin: 1rem;
     }
 
-    #dashboardContent h2 {
-        font-size: 1.25rem;
-    }
-
-    #dashboardContent p {
-        font-size: 0.9rem;
-    }
-
-    .main-content {
-        padding: 0.75rem;
+    .form-row {
+        flex-direction: column;
     }
 }

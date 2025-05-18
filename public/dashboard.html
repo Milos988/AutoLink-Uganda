@@ -1,29 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Dashboard</title>
 	<link rel="stylesheet" href="css/auth.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-<div class="dashboard-wrapper">
+<div class="dashboard-layout">
 	<aside class="sidebar">
-		<h2>AutoLink</h2>
-		<ul>
-			<li><button id="dashboardBtn">Dashboard</button></li>
-			<li><button id="addListingBtn">Add Listing</button></li>
-			<li><button id="myListingsBtn">My Listings</button></li>
-			<li><button id="logoutBtn">Logout</button></li>
-		</ul>
+		<div class="profile">
+			<img src="https://via.placeholder.com/80" alt="Profile Picture">
+			<h3>John Doe</h3>
+			<p>Seller Pro</p>
+		</div>
+		<nav>
+			<ul>
+				<li><button id="dashboardBtn">Dashboard</button></li>
+				<li><button id="addListingBtn">Add Listing</button></li>
+				<li><button id="myListingsBtn">My Listings</button></li>
+				<li><button id="logoutBtn">Logout</button></li>
+			</ul>
+		</nav>
 	</aside>
 
-	<main class="main-content">
-		<div id="dashboardContent">
-			<!-- Dynamic dashboard content will appear here -->
-			<h2 id="welcome">Welcome</h2>
-			<p id="role"></p>
-			<p id="credits"></p>
-		</div>
+	<main class="main-panel">
+		<div id="dashboardContent"></div>
 	</main>
 </div>
 

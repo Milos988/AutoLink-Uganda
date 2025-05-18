@@ -5,10 +5,9 @@ const db = require('../db');
 const router = express.Router();
 const authenticateToken = require('../middleware/authMiddleware');
 
+const JWT_SECRET = 'your_secret_key'; // Replace with env var in production
 
-const JWT_SECRET = 'your_secret_key';
-
-// Register
+// ✅ REGISTER
 router.post('/register', async (req, res) => {
 	try {
 		const { name, email, password } = req.body;
@@ -17,17 +16,13 @@ router.post('/register', async (req, res) => {
 			return res.status(400).json({ message: 'All fields are required' });
 		}
 
-		// Check if email already exists
 		const [existingUser] = await db.query('SELECT 1 FROM users WHERE email = ?', [email]);
 		if (existingUser.length > 0) {
 			return res.status(409).json({ message: 'Email already registered' });
 		}
 
-		// Hash password
-		const hashedPassword = await bcrypt.hash(password, 12); // 12 is more secure than 10
-
-		// Default values: role = 1 (seller_basic), credits = 5, verified = 1
-		const defaultRole = 1;
+		const hashedPassword = await bcrypt.hash(password, 12);
+		const defaultRole = 1;         // seller_basic
 		const defaultCredits = 5;
 		const defaultVerified = 1;
 
@@ -45,8 +40,7 @@ router.post('/register', async (req, res) => {
 });
 
 
-
-// Login
+// ✅ LOGIN
 router.post('/login', async (req, res) => {
 	const { email, password } = req.body;
 
@@ -63,23 +57,21 @@ router.post('/login', async (req, res) => {
 		}
 
 		const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET);
-		res
-			.cookie('token', token, {
-				httpOnly: true,
-				secure: false, // set to true in production (HTTPS)
-				sameSite: 'Lax',
-				maxAge: 2 * 60 * 60 * 1000 // 2 hours
-			})
-			.json({ message: 'Login successful' });
+
+		res.cookie('token', token, {
+			httpOnly: true,
+			secure: false, // Set to true in production (HTTPS)
+			sameSite: 'Lax',
+			maxAge: 2 * 60 * 60 * 1000
+		}).json({ message: 'Login successful' });
 
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}
 });
 
-module.exports = router;
 
-// 🛡️ GET /api/profile — Protected route
+// ✅ PROFILE - Get current logged-in user's info
 router.get('/profile', authenticateToken, async (req, res) => {
 	try {
 		const userId = req.user.id;
@@ -99,7 +91,14 @@ router.get('/profile', authenticateToken, async (req, res) => {
 		res.status(500).json({ message: 'Server error' });
 	}
 });
+
+
+// ✅ LOGOUT
 router.post('/logout', (req, res) => {
 	res.clearCookie('token');
 	res.json({ message: 'Logged out' });
 });
+
+
+// ✅ Export all routes
+module.exports = router;

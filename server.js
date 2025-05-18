@@ -1,46 +1,32 @@
-const filters = require('./routes/filters');
 const express = require('express');
 const path = require('path');
-const app = express();
-const PORT = 3000;
-const listings = require('./routes/listings');
-const db = require('./db');
-const authRoutes = require('./routes/auth');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const app = express();
+const PORT = 3000;
 
+// Routes
+const authRoutes = require('./routes/auth');
+const listingRoutes = require('./routes/listings');
+const filters = require('./routes/filters');
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Your API routes
-
-app.use('/api/listings', listings);
-
-app.listen(PORT, () => {
-	console.log(`Server running at http://localhost:${PORT}`);
-});
-
-// API Filter
-app.use('/api/filters', filters);
-
-// registration and login
+// ✅ MIDDLEWARE (MUST COME BEFORE ROUTES)
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}));
 app.use(cookieParser());
-
-app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+// ✅ ROUTES
 app.use('/api', authRoutes);
+app.use('/api', listingRoutes); // single mounting is enough
+app.use('/api/filters', filters);
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
-
-/*
+// ✅ START SERVER (just once)
 app.listen(PORT, () => {
 	console.log(`Server running on http://localhost:${PORT}`);
 });
-
- */
-
-
-
-
