@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "make": "Toyota",
+        "model": "Harrier",
+        "year": 2012,
+        "price": "35,000,000 UGX",
+        "location": "Kampala",
+        "image": "images/1.jpeg"
+    },
+    {
+        "id": 2,
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2010,
+        "price": "28,000,000 UGX",
+        "location": "Wakiso",
+        "image": "https://via.placeholder.com/400x250?text=Subaru+Forester"
+    },
+    {
+        "id": 3,
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2015,
+        "price": "45,000,000 UGX",
+        "location": "Entebbe",
+        "image": "https://via.placeholder.com/400x250?text=Honda+CR-V"
+    },
+    {
+        "id": 4,
+        "make": "Toyota",
+        "model": "Premio",
+        "year": 2014,
+        "price": "33,000,000 UGX",
+        "location": "Kampala",
+        "image": "https://via.placeholder.com/400x250?text=Toyota+Premio"
+    },
+    {
+        "id": 5,
+        "make": "Nissan",
+        "model": "X-Trail",
+        "year": 2013,
+        "price": "30,000,000 UGX",
+        "location": "Mukono",
+        "image": "https://via.placeholder.com/400x250?text=Nissan+X-Trail"
+    },
+    {
+        "id": 6,
+        "make": "Toyota",
+        "model": "Harrier",
+        "year": 2012,
+        "price": "35,000,000 UGX",
+        "location": "Kampala",
+        "image": "images/1.jpeg"
+    },
+    {
+        "id": 7,
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2010,
+        "price": "28,000,000 UGX",
+        "location": "Wakiso",
+        "image": "https://via.placeholder.com/400x250?text=Subaru+Forester"
+    },
+    {
+        "id": 8,
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2015,
+        "price": "45,000,000 UGX",
+        "location": "Entebbe",
+        "image": "https://via.placeholder.com/400x250?text=Honda+CR-V"
+    },
+    {
+        "id": 9,
+        "make": "Toyota",
+        "model": "Premio",
+        "year": 2014,
+        "price": "33,000,000 UGX",
+        "location": "Kampala",
+        "image": "https://via.placeholder.com/400x250?text=Toyota+Premio"
+    },
+    {
+        "id": 10,
+        "make": "Nissan",
+        "model": "X-Trail",
+        "year": 2013,
+        "price": "30,000,000 UGX",
+        "location": "Mukono",
+        "image": "https://via.placeholder.com/400x250?text=Nissan+X-Trail"
+    }
+]

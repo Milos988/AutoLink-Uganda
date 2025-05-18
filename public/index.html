@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLink Uganda</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AutoLink Uganda</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="login.html">Login</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <div class="container">
+            <input type="text" id="searchInput" placeholder="Search by make, model or location...">
+        </div>
+    </section>
+    <section class="featured-listings">
+	   <div><h2>Featured Listings</h2></div>
+	    <div id="featuredContainer" class="featured-scroll"></div>
+	    <!-- Featured listing will be injected here by JS -->
+    </section>
+    <section class="listings-section">
+
+	    <div class="container" id="listingsContainer">
+            <!-- Listings will be injected here by JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AutoLink Uganda. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

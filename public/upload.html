@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Create Listing (Dev Tool)</title>
+</head>
+<body>
+<h2>Create New Listing</h2>
+
+<form id="listingForm" enctype="multipart/form-data">
+	<label>Brand:
+		<select name="brand_id" id="brandSelect" required></select>
+	</label><br>
+
+	<label>Model:
+		<select name="model_id" id="modelSelect" required>
+			<option value="">Select brand first</option>
+		</select>
+	</label><br>
+
+	<label>Year: <input type="number" name="year" required /></label><br>
+	<label>Price: <input type="text" name="price" required /></label><br>
+	<label>Location: <input type="text" name="location" required /></label><br>
+	<label>Condition:
+		<select name="vehicle_condition">
+			<option value="Used">Used</option>
+			<option value="New">New</option>
+		</select>
+	</label><br>
+	<label>Featured:
+		<select name="featured">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</select>
+	</label><br>
+	<label>Image: <input type="file" name="image" accept="image/*" required /></label><br><br>
+
+	<button type="submit">Create Listing</button>
+</form>
+
+<script>
+	const brandSelect = document.getElementById('brandSelect');
+	const modelSelect = document.getElementById('modelSelect');
+
+	// Load brands
+	fetch('/api/filters/brands')
+			.then(res => res.json())
+			.then(brands => {
+				brandSelect.innerHTML = '<option value="">Select brand</option>' +
+						brands.map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+			});
+
+	// Load models based on selected brand
+	brandSelect.addEventListener('change', () => {
+		const brandId = brandSelect.value;
+		if (!brandId) {
+			modelSelect.innerHTML = '<option value="">Select brand first</option>';
+			return;
+		}
+
+		fetch(`/api/filters/models/${brandId}`)
+				.then(res => res.json())
+				.then(models => {
+					modelSelect.innerHTML = models.length
+							? models.map(m => `<option value="${m.id}">${m.name}</option>`).join('')
+							: '<option value="">No models found</option>';
+				});
+	});
+
+	// Submit form
+	document.getElementById('listingForm').addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+
+		try {
+			const res = await fetch('/api/listings', {
+				method: 'POST',
+				body: formData
+			});
+
+			const data = await res.json();
+			alert(data.message || 'Listing created!');
+			e.target.reset();
+		} catch (err) {
+			console.error('Error:', err);
+			alert('Failed to create listing.');
+		}
+	});
+</script>
+</body>
+</html>
