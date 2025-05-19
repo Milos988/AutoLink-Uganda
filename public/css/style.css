@@ -180,6 +180,180 @@ footer {
         padding: 10px;
     }
 }
+/* Search page */
+.listing-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 960px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.listing-card {
+    height: 200px;
+    max-width: 680px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.listing-card img {
+    width: 250px;
+    height: 200px;
+    object-fit: contain;
+    border-right: 1px solid #f0f0f0;
+}
+
+.listing-details {
+    padding: 15px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.listing-card-name {
+
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+
+.listing-details h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #003366;
+}
+
+.listing-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.listing-meta span {
+    white-space: nowrap;
+}
+
+.listing-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d62828;
+}
+
+.listing-location {
+    font-size: 14px;
+    color: #444;
+    margin-top: 5px;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .listing-card {
+        flex-direction: column;
+    }
+
+    .listing-card img {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .listing-details {
+        padding: 15px;
+    }
+}
+
+
+
+.pagination {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.pagination button {
+    background: none;
+    border: 1px solid #ccc;
+    margin: 0 4px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination button:hover {
+    background-color: #eee;
+}
+
+.search-bar {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 8px;
+}
+
+.search-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.search-row select,
+.search-row button {
+    flex: 1 1 180px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-row input[type="number"] {
+    flex: 1 1 180px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-row button {
+    background-color: #ff9900;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.search-row button:hover {
+    background-color: #e68900;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .search-row {
+        flex-direction: column;
+    }
+}
 
 @media (max-width: 480px) {
     .car-card {

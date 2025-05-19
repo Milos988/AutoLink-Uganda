@@ -19,12 +19,51 @@
             </nav>
         </div>
     </header>
+    <section class="search-bar">
+	    <form id="searchForm">
+		    <div class="search-row">
+			    <select name="brand" id="brand" required>
+				    <option value="">Select brand</option>
+			    </select>
 
-    <section class="search-section">
-        <div class="container">
-            <input type="text" id="searchInput" placeholder="Search by make, model or location...">
-        </div>
+			    <select name="model" id="model" required>
+				    <option value="">Select model</option>
+			    </select>
+
+
+			    <input type="number" name="yearFrom" id="yearFrom" placeholder="Year From" min="1900" max="2099" />
+
+			    <input type="number" name="yearTo" id="yearTo" placeholder="Year To" min="1900" max="2099" />
+
+
+			    <select name="bodyType" id="bodyType">
+				    <option value="">Body Type</option>
+				    <option value="sedan">Sedan</option>
+				    <option value="suv">SUV</option>
+				    <option value="hatchback">Hatchback</option>
+				    <option value="truck">Truck</option>
+			    </select>
+
+			    <select name="fuelType" id="fuelType">
+				    <option value="">Fuel</option>
+				    <option value="petrol">Petrol</option>
+				    <option value="diesel">Diesel</option>
+				    <option value="hybrid">Hybrid</option>
+				    <option value="electric">Electric</option>
+			    </select>
+
+			    <select name="condition" id="condition">
+				    <option value="">Condition</option>
+				    <option value="new">New</option>
+				    <option value="used">Used</option>
+			    </select>
+
+			    <button type="submit">Search</button>
+		    </div>
+	    </form>
     </section>
+
+
     <section class="featured-listings">
 	   <div><h2>Featured Listings</h2></div>
 	    <div id="featuredContainer" class="featured-scroll"></div>

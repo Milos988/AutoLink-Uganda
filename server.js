@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth');
 const listingRoutes = require('./routes/listings');
 const filters = require('./routes/filters');
 
+
+
 // ✅ MIDDLEWARE (MUST COME BEFORE ROUTES)
 app.use(cors({
 	origin: 'http://localhost:3000',
@@ -25,6 +27,7 @@ app.use(express.json());
 app.use('/api', authRoutes);
 app.use('/api', listingRoutes); // single mounting is enough
 app.use('/api/filters', filters);
+app.use('/api', require('./routes/listings'));
 
 // ✅ START SERVER (just once)
 app.listen(PORT, () => {
