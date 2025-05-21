@@ -5,9 +5,17 @@
 }
 
 body {
+    background-image: url("/images/backgroung.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: darkgrey;
     color: #333;
+
+
+
 }
 
 .container {
@@ -101,7 +109,7 @@ nav a {
     flex-wrap: wrap;
     gap: 16px;
     padding: 15px;
-    background: #fafafa;
+    background-color: rgba(0,0,0,0.5);
     max-width: 100%;
 }
 
@@ -351,8 +359,9 @@ footer {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .search-row {
-        flex-direction: column;
+        flex-direction: row;
     }
+
 }
 
 @media (max-width: 480px) {

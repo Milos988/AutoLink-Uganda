@@ -91,31 +91,43 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
 		// Load brands
-		const brandRes = await fetch('/api/brands');
-		const brands = await brandRes.json();
 		const brandSelect = document.getElementById('brand');
-		brands.forEach(b => {
-			const opt = document.createElement('option');
-			opt.value = b.id;
-			opt.textContent = b.name;
-			brandSelect.appendChild(opt);
-		});
+		const modelSelect = document.getElementById('model');
 
-		// Load models on brand change
-		brandSelect.addEventListener('change', async () => {
+// Load all brands on form load
+		fetch('/api/brands')
+			.then(res => res.json())
+			.then(data => {
+				data.forEach(brand => {
+					const option = document.createElement('option');
+					option.value = brand.id;
+					option.textContent = brand.name;
+					brandSelect.appendChild(option);
+				});
+			});
+
+// Load models when brand changes
+		brandSelect.addEventListener('change', () => {
 			const brandId = brandSelect.value;
-			const modelSelect = document.getElementById('model');
 			modelSelect.innerHTML = '<option value="">Select model</option>';
 
-			const modelRes = await fetch(`/api/models?brand_id=${brandId}`);
-			const models = await modelRes.json();
-			models.forEach(m => {
-				const opt = document.createElement('option');
-				opt.value = m.id;
-				opt.textContent = m.name;
-				modelSelect.appendChild(opt);
-			});
+			if (!brandId) return;
+
+			fetch(`/api/models?brand=${brandId}`)
+				.then(res => res.json())
+				.then(models => {
+					models.forEach(model => {
+						const option = document.createElement('option');
+						option.value = model.id;
+						option.textContent = model.name;
+						modelSelect.appendChild(option);
+					});
+				})
+				.catch(err => {
+					console.error('Error loading models:', err);
+				});
 		});
+
 
 		// Get user credits
 		const user = JSON.parse(localStorage.getItem('user'));
