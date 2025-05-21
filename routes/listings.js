@@ -13,35 +13,24 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // GET /api/brands - Return all brands
-router.get('/brands', async (req, res) => {
-	try {
-		const [rows] = await db.query('SELECT id, name FROM brands ORDER BY name ASC');
-		res.json(rows);
-	} catch (err) {
-		console.error('Error fetching brands:', err.message);
-		res.status(500).json({ error: 'Internal server error' });
-	}
-});
-
-// GET /api/models?brand_id=1 - Return models for selected brand
-router.get('/models', async (req, res) => {
-	const brandId = parseInt(req.query.brand);
+router.get('/', async (req, res) => {
+	const brandId = parseInt(req.query.brand_id);
 
 	if (!brandId || isNaN(brandId)) {
 		return res.status(400).json({ error: 'Missing or invalid brand ID' });
 	}
 
 	try {
-		const [rows] = await db.query(
-			'SELECT id, name FROM models WHERE brand_id = ?',
-			[brandId]
-		);
-		res.json(rows);
+		const [models] = await db.query('SELECT id, name FROM models WHERE brand_id = ?', [brandId]);
+		res.json(models);
 	} catch (err) {
-		console.error('Error loading models:', err.message);
-		res.status(500).json({ error: 'Internal server error' });
+		console.error('DB error:', err);
+		res.status(500).json({ error: 'Server error' });
 	}
 });
+
+module.exports = router;
+
 
 
 
