@@ -6,14 +6,12 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
 
-// Routes
 const authRoutes = require('./routes/auth');
 const listingRoutes = require('./routes/listings');
 const filters = require('./routes/filters');
+const brandRoutes = require('./routes/brands');
 
-
-
-// ✅ MIDDLEWARE (MUST COME BEFORE ROUTES)
+// ✅ MIDDLEWARE
 app.use(cors({
 	origin: 'http://localhost:3000',
 	credentials: true
@@ -25,11 +23,12 @@ app.use(express.json());
 
 // ✅ ROUTES
 app.use('/api', authRoutes);
-app.use('/api', listingRoutes); // single mounting is enough
+app.use('/api/listings', listingRoutes);
 app.use('/api/filters', filters);
-app.use('/api', require('./routes/listings'));
+app.use('/api/brands', brandRoutes); // ✅ This is what was missing
 
-// ✅ START SERVER (just once)
+
+// ✅ START SERVER
 app.listen(PORT, () => {
 	console.log(`Server running on http://localhost:${PORT}`);
 });

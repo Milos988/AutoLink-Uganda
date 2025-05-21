@@ -13,9 +13,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: darkgrey;
     color: #333;
-
-
-
 }
 
 .container {
@@ -72,9 +69,10 @@ nav a {
 .search-section {
     background-color: #fff;
     margin: auto;
-    padding: 20px 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+
 
 .search-section input {
     width: 50%;
@@ -90,27 +88,20 @@ nav a {
 .featured-scroll {
     margin: auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
-    width: 90%;
+    gap: 16px;
+    padding: 40px;
+    width: 80%;
     max-width: 1200px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 20px;
 }
 
 .featured-listings h2 {
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
-}
-
-#featuredContainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.5);
-    max-width: 100%;
 }
 
 .car-card {

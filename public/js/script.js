@@ -4,11 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.getElementById('searchForm');
     const featuredContainer = document.getElementById('featuredContainer');
 
-    // 🔹 Load brands
+    // 🔹 Load all brands
     fetch('/api/brands')
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(brand => {
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to fetch brands');
+            return res.json();
+        })
+        .then(brands => {
+            if (!Array.isArray(brands)) throw new Error('Brands response is not an array');
+            brands.forEach(brand => {
                 const option = document.createElement('option');
                 option.value = brand.id;
                 option.textContent = brand.name;
@@ -16,24 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
         .catch(err => {
-            console.error('Error loading brands:', err);
+            console.error('Error loading brands:', err.message);
         });
 
-    // 🔹 Load models when brand is selected
-    brandSelect.addEventListener('change', (e) => {
-        const brandId = parseInt(e.target.value);
+    // 🔹 Load models on brand change
+    brandSelect.addEventListener('change', () => {
+        const brandId = parseInt(brandSelect.value);
         modelSelect.innerHTML = '<option value="">All Models</option>';
 
         if (!brandId || isNaN(brandId)) return;
 
-        fetch(`/api/models?brand=${brandId}`)
+        fetch(`/api/brands/models?brand_id=${brandId}`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch models');
                 return res.json();
             })
-            .then(data => {
-                if (!Array.isArray(data)) throw new Error('Expected model list');
-                data.forEach(model => {
+            .then(models => {
+                if (!Array.isArray(models)) throw new Error('Models response is not an array');
+                models.forEach(model => {
                     const option = document.createElement('option');
                     option.value = model.id;
                     option.textContent = model.name;
@@ -45,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // 🔹 Search form submit
+    // 🔹 Handle search form submit
     searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const formData = new FormData(this);
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `/search.html?${query}`;
     });
 
-    // 🔹 Featured listings
+    // 🔹 Featured listings logic
     let featuredListings = [];
 
     function renderFeatured(list) {
@@ -62,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'car-card';
             card.innerHTML = `
-        <img src="${car.image_url}" alt="${car.brand_name} ${car.model_name}" width="200" height="auto" />
-        <div class="car-info-wrapper">
-          <h3 class="car-card-name">${car.brand_name} ${car.model_name}</h3>
-          <p>Year: ${car.year}</p>
-          <p>Price: ${parseInt(car.price).toLocaleString()} UGX</p>
-        </div>
-      `;
+				<img src="${car.image_url}" alt="${car.brand_name} ${car.model_name}" width="200" height="auto" />
+				<div class="car-info-wrapper">
+					<h3 class="car-card-name">${car.brand_name} ${car.model_name}</h3>
+					<p>Year: ${car.year}</p>
+					<p>Price: ${parseInt(car.price).toLocaleString()} UGX</p>
+				</div>
+			`;
             featuredContainer.appendChild(card);
         });
     }
@@ -93,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderFeatured(getRandomSubset());
             }, 15000);
         } catch (err) {
-            console.error('Error loading featured listings:', err);
+            console.error('Error loading featured listings:', err.message);
             featuredContainer.innerHTML = '<p>Error loading listings.</p>';
         }
     }
